@@ -6,12 +6,12 @@ frontend, convert to blob and store it in documents.)
 
 2. Approach 2 - 
 
-  @blob = ActiveStorage::Blob.create_after_upload(<my pdf file>)
-  return render json: {status=200, message='File uploaded successfully'}
+  @blob = ActiveStorage::Blob.create_after_upload(<my pdf file>) \
+  return render json: {status=200, message='File uploaded successfully', data: {blob_id: @blob.id}}
   
  In the frontend store - 
  
- document = {blob_id: #blob_id}
+ document = {blob_id: res['data']['blob_id']}
  
  then, when the application creating is complete, if it is successful do - 
  
